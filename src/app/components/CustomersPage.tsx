@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { SearchInput } from './SearchInput';
+import FilterWindow from './FilterWindow';
 
 const fetchCustomers = async (searchText = '', species: string[] = []) => {
   let url = '/api/customers';
@@ -42,33 +43,21 @@ const CustomersPage = () => {
           <SearchInput searchText={searchText} setSearchText={setSearchText} />
           <div className="relative">
             <button
-              className="border p-2 rounded"
+              className={`w-[122px] h-[40px] rounded-xl border border-[#E0E8F2] shadow-md transition-all ${isFilterOpen ? 'bg-[#E8EBF0] border-[#D8E1EA]' : 'bg-white'}`}
               onClick={() => setIsFilterOpen(!isFilterOpen)}
             >
               Pets
             </button>
             {isFilterOpen && (
-              <div className="absolute top-12 left-0 bg-white p-4 rounded shadow-md z-10">
-                {[
-                  'Any Animal',
-                  'Dogs',
-                  'Cats',
-                  'Birds',
-                  'Hamsters',
-                  'Rats',
-                ].map((animal) => (
-                  <button
-                    key={animal}
-                    className={`block w-full text-left p-2 rounded ${selectedSpecies.includes(animal.toLowerCase()) ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                    onClick={() => {
-                      if (animal === 'Any Animal') setSelectedSpecies([]);
-                      else setSelectedSpecies([animal.toLowerCase()]);
-                    }}
-                  >
-                    {animal}
-                  </button>
-                ))}
-              </div>
+              <FilterWindow
+                selectedSpecies={selectedSpecies}
+                setSelectedSpecies={setSelectedSpecies}
+                onApply={(newSelection) => {
+                  setSelectedSpecies(newSelection);
+                  setIsFilterOpen(false);
+                }}
+                onReset={() => setSelectedSpecies([])}
+              />
             )}
           </div>
         </div>
