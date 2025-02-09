@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { SearchInput } from './SearchInput';
 import FilterWindow from './FilterWindow';
+import CustomersList from './CustomerList';
 
 const fetchCustomers = async (searchText = '', species: string[] = []) => {
   let url = '/api/customers';
@@ -54,7 +55,7 @@ const CustomersPage = () => {
           </div>
         </div>
       </div>
-      <div className="w-[838px] h-[40px] bg-gray-100 p-4 flex flex-col"></div>
+      <CustomersList customers={customers} />
     </div>
   );
 };
