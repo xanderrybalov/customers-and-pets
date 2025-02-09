@@ -42,23 +42,15 @@ const CustomersPage = () => {
         <div className="flex gap-2 ml-4 mt-2">
           <SearchInput searchText={searchText} setSearchText={setSearchText} />
           <div className="relative">
-            <button
-              className={`w-[122px] h-[40px] rounded-xl border border-[#E0E8F2] shadow-md transition-all ${isFilterOpen ? 'bg-[#E8EBF0] border-[#D8E1EA]' : 'bg-white'}`}
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-            >
-              Pets
-            </button>
-            {isFilterOpen && (
-              <FilterWindow
-                selectedSpecies={selectedSpecies}
-                setSelectedSpecies={setSelectedSpecies}
-                onApply={(newSelection) => {
-                  setSelectedSpecies(newSelection);
-                  setIsFilterOpen(false);
-                }}
-                onReset={() => setSelectedSpecies([])}
-              />
-            )}
+            <FilterWindow
+              selectedSpecies={selectedSpecies}
+              setSelectedSpecies={setSelectedSpecies}
+              onApply={(newSelection) => {
+                setSelectedSpecies(newSelection);
+                setIsFilterOpen(false);
+              }}
+              onReset={() => setSelectedSpecies([])}
+            />
           </div>
         </div>
       </div>
