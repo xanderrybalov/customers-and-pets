@@ -39,7 +39,7 @@ const CustomersPage = () => {
         </h1>
 
         {/* Search and Filter Section */}
-        <div className="flex gap-2 ml-4 mt-2">
+        <div className="flex gap-3 ml-4 mt-2">
           <SearchInput searchText={searchText} setSearchText={setSearchText} />
           <div className="relative">
             <FilterWindow
