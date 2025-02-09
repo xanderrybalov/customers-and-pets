@@ -75,7 +75,7 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
           </div>
           <div className="flex justify-between mt-4">
             <button
-              className="w-[145px] h-[40px] border border-[#E0E8F2] rounded-[12px] bg-white text-black shadow-sm hover:shadow-md transition-all"
+              className="w-[145px] h-[40px] border border-[#E0E8F2] rounded-[12px] bg-white text-black shadow-sm hover:shadow-md transition-all active:scale-95"
               onClick={() => {
                 setIsResetPressed(true);
                 setTimeout(() => setIsResetPressed(false), 200);
@@ -86,7 +86,7 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
               Reset
             </button>
             <button
-              className="w-[145px] h-[40px] bg-gradient-to-b from-[#3A8DFF] to-[#1369D9] text-white rounded-[12px] shadow-md hover:shadow-lg transition-all"
+              className="w-[145px] h-[40px] bg-gradient-to-b from-[#3A8DFF] to-[#1369D9] text-white rounded-[12px] shadow-md hover:shadow-lg transition-all active:scale-95"
               onClick={() => {
                 setIsApplyPressed(true);
                 setTimeout(() => setIsApplyPressed(false), 200);
