@@ -35,20 +35,23 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
 
   const toggleSelection = (species: string) => {
     if (species === 'Any Animal') {
-      setLocalSelection([]);
+      setLocalSelection(['Any Animal']);
     } else {
-      setLocalSelection((prev) =>
-        prev.includes(species)
+      setLocalSelection((prev) => {
+        if (prev.includes('Any Animal')) {
+          return [species];
+        }
+        return prev.includes(species)
           ? prev.filter((s) => s !== species)
-          : [...prev, species]
-      );
+          : [...prev, species];
+      });
     }
   };
 
   return (
     <div className="relative font-inter font-medium text-[14px] leading-[16.94px] tracking-tight">
       <button
-        className="w-[122px] h-[40px] rounded-xl border border-[#E0E8F2] shadow-md bg-white active:bg-[#E8EBF0]"
+        className={`w-[122px] h-[40px] rounded-xl border border-[#E0E8F2] transition-all ${isFilterOpen ? 'bg-[#E8EBF0]' : 'bg-white shadow-md'}`}
         onClick={() => setIsFilterOpen(!isFilterOpen)}
       >
         Pets
