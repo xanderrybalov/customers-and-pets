@@ -41,8 +41,11 @@ const CustomerList: React.FC<CustomerListProps> = ({
             className="w-full h-auto lg:w-[838px] lg:h-[40px] bg-[#F5F7FA] flex flex-col md:flex-wrap p-2 px-4 shadow-sm content-start"
           >
             <div className="flex items-center flex-wrap gap-2 ">
+              <span className="font-medium text-gray-700 px-2 sm:text-[14px]">
+                ID
+              </span>
               <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 sm:px-1">
-                id-{customer.id}
+                {customer.id}
               </span>
               <span className="font-medium text-gray-700 sm:text-[14px]">
                 {customer.name}

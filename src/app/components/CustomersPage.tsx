@@ -32,6 +32,7 @@ const fetchCustomers = async (searchText = '', species: string[] = []) => {
       const searchLower = searchText.toLowerCase();
       customers = customers.filter(
         (customer: Customer) =>
+          customer.id.toLowerCase().includes(searchLower) ||
           customer.name.toLowerCase().includes(searchLower) ||
           customer.email.toLowerCase().includes(searchLower) ||
           customer.phone.includes(searchText)
