@@ -40,7 +40,6 @@ const CustomerList: React.FC<CustomerListProps> = ({
             key={customer.id}
             className="w-full h-auto lg:w-[838px] lg:h-[40px] bg-[#F5F7FA] flex flex-col md:flex-wrap p-2 px-4 shadow-sm content-start"
           >
-            {/* Верхний ряд: ID, Имя и Телефон */}
             <div className="flex items-center flex-wrap gap-2 ">
               <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 sm:px-1">
                 id-{customer.id}
@@ -53,7 +52,6 @@ const CustomerList: React.FC<CustomerListProps> = ({
               </span>
             </div>
 
-            {/* Нижний ряд: Email и Животные */}
             <div className="flex items-center flex-wrap gap-2 mt-2 lg:mt-auto lg:ml-1">
               <span className="font-medium text-gray-700 px-2 sm:px-1 sm:text-[14px]">
                 {customer.email}
