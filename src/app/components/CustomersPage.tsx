@@ -34,10 +34,7 @@ const fetchCustomers = async (searchText = '', species: string[] = []) => {
         (customer: Customer) =>
           customer.name.toLowerCase().includes(searchLower) ||
           customer.email.toLowerCase().includes(searchLower) ||
-          customer.phone.includes(searchText) ||
-          customer.pets.some((pet) =>
-            pet.name.toLowerCase().includes(searchLower)
-          )
+          customer.phone.includes(searchText)
       );
     }
 
@@ -71,15 +68,15 @@ const CustomersPage = () => {
   return (
     <div
       className="w-screen h-screen flex p-6 bg-white flex-col items-center justify-start gap-3 
-                    lg:p-4 md:p-3 sm:p-2 sm:gap-2"
+                lg:p-4 md:p-3 sm:p-2 sm:gap-2"
     >
       <div
-        className="w-full h-auto bg-[#F5F7FA] p-4 flex flex-col
-                      lg:w-[838px] lg:h-[150px] justify-center"
+        className="w-full h-auto bg-background p-4 flex flex-col
+                  lg:w-[838px] lg:h-[150px] justify-center"
       >
         <h1
-          className="text-[25px] font-inter font-semibold leading-[30.26px] tracking-tightest m-4
-                      lg:text-[22px] md:text-[20px] sm:text-[18px] sm:m-2"
+          className="text-2xl font-inter font-semibold leading-[30.26px] tracking-tightest m-4
+             lg:text-xl md:text-md sm:text-base sm:m-2"
         >
           Customers and Pets
         </h1>

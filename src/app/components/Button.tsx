@@ -17,8 +17,8 @@ const Button: React.FC<ButtonProps> = ({
     <button
       className={`w-[145px] h-[40px] rounded-[12px] shadow-md transition-all active:scale-95 ${
         variant === 'primary'
-          ? 'bg-gradient-to-b from-[#3A8DFF] to-[#1369D9] text-white hover:shadow-lg'
-          : 'border border-[#E0E8F2] bg-white text-black shadow-sm hover:shadow-md'
+          ? 'bg-gradient-to-b from-secondary to-primary text-white hover:shadow-lg'
+          : 'border border-border bg-white text-textDark shadow-sm hover:shadow-md'
       }`}
       onClick={onClick}
     >

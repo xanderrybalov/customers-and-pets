@@ -75,7 +75,7 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
           ))}
         </div>
 
-        <div className="flex justify-between px-4 py-4 border-t border-t-[#e0e8f3] gap-4">
+        <div className="flex justify-between px-4 py-4 border-t border-t-border gap-4">
           <Button
             label="Reset"
             variant="secondary"
