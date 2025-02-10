@@ -63,54 +63,58 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
         </svg>
       </button>
 
-      {isFilterOpen && (
-        <div className="absolute top-full mt-2 left-0 w-[334px] h-[174px] bg-white border border-[#D8E1EA] shadow-md rounded-xl flex flex-col justify-between">
-          <div className="flex flex-wrap gap-2 py-4 px-4">
-            {speciesOptions.map((species) => (
-              <button
-                key={species}
-                className={`px-3 h-[29px] justify-start rounded-full py-1 border border-[#E0E8F2] flex items-center gap-2 transition-all ${
-                  localSelection.includes(species)
-                    ? 'bg-[#1369D9] text-white'
-                    : 'bg-white text-black'
-                } active:bg-gray-200`}
-                onClick={() => toggleSelection(species)}
-              >
-                {species !== 'Any Animal' && (
-                  <SpeciesIcon
-                    species={species}
-                    fillColor={
-                      localSelection.includes(species) ? '#ffffff' : '#838993'
-                    }
-                  />
-                )}
-                {species}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex justify-between px-4 py-4 border-t border-t-[#e0e8f3]">
+      <div
+        className={`absolute top-full left-0 w-[334px] h-[174px] bg-white border border-[#D8E1EA] shadow-md rounded-xl flex flex-col justify-between transition-all duration-300 ${
+          isFilterOpen
+            ? 'opacity-100 scale-100 translate-y-2'
+            : 'opacity-0 scale-95 translate-y-0 pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-wrap gap-2 py-4 px-4">
+          {speciesOptions.map((species) => (
             <button
-              className="w-[145px] h-[40px] border border-[#E0E8F2] rounded-[12px] bg-white text-black shadow-sm hover:shadow-md transition-all active:scale-95"
-              onClick={() => {
-                setLocalSelection([]);
-                onReset();
-              }}
+              key={species}
+              className={`px-3 h-[29px] justify-start rounded-full py-1 border border-[#E0E8F2] flex items-center gap-2 transition-all ${
+                localSelection.includes(species)
+                  ? 'bg-[#1369D9] text-white'
+                  : 'bg-white text-black'
+              } active:bg-gray-200`}
+              onClick={() => toggleSelection(species)}
             >
-              Reset
+              {species !== 'Any Animal' && (
+                <SpeciesIcon
+                  species={species}
+                  fillColor={
+                    localSelection.includes(species) ? '#ffffff' : '#838993'
+                  }
+                />
+              )}
+              {species}
             </button>
-            <button
-              className="w-[145px] h-[40px] bg-gradient-to-b from-[#3A8DFF] to-[#1369D9] text-white rounded-[12px] shadow-md hover:shadow-lg transition-all active:scale-95"
-              onClick={() => {
-                onApply(localSelection);
-                setIsFilterOpen(false);
-              }}
-            >
-              Apply Filters
-            </button>
-          </div>
+          ))}
         </div>
-      )}
+
+        <div className="flex justify-between px-4 py-4 border-t border-t-[#e0e8f3]">
+          <button
+            className="w-[145px] h-[40px] border border-[#E0E8F2] rounded-[12px] bg-white text-black shadow-sm hover:shadow-md transition-all active:scale-95"
+            onClick={() => {
+              setLocalSelection([]);
+              onReset();
+            }}
+          >
+            Reset
+          </button>
+          <button
+            className="w-[145px] h-[40px] bg-gradient-to-b from-[#3A8DFF] to-[#1369D9] text-white rounded-[12px] shadow-md hover:shadow-lg transition-all active:scale-95"
+            onClick={() => {
+              onApply(localSelection);
+              setIsFilterOpen(false);
+            }}
+          >
+            Apply Filters
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
