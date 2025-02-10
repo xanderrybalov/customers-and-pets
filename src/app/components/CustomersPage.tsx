@@ -75,7 +75,7 @@ const CustomersPage = () => {
     >
       <div
         className="w-full h-auto bg-[#F5F7FA] p-4 flex flex-col
-                      lg:w-[838px] lg:h-[150px]"
+                      lg:w-[838px] lg:h-[150px] justify-center"
       >
         <h1
           className="text-[25px] font-inter font-semibold leading-[30.26px] tracking-tightest m-4
