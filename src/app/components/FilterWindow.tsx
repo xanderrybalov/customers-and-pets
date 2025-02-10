@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import SpeciesIcon from './SpeciesIcon';
+import SpeciesButton from './SpeciesButton';
+import Button from './Button';
 
 type FilterWindowProps = {
   selectedSpecies: string[];
@@ -65,47 +66,32 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
       >
         <div className="flex flex-wrap gap-2 py-4 px-4">
           {STATIC_SPECIES.map((species) => (
-            <button
+            <SpeciesButton
               key={species}
-              className={`px-3 h-[29px] justify-start rounded-full py-1 border border-[#E0E8F2] flex items-center gap-2 transition-all ${
-                localSelection.includes(species)
-                  ? 'bg-[#1369D9] text-white'
-                  : 'bg-white text-black'
-              } active:bg-gray-200`}
-              onClick={() => toggleSelection(species)}
-            >
-              {species !== 'Any Animal' && (
-                <SpeciesIcon
-                  species={species}
-                  fillColor={
-                    localSelection.includes(species) ? '#ffffff' : '#838993'
-                  }
-                />
-              )}
-              {species}
-            </button>
+              species={species}
+              isSelected={localSelection.includes(species)}
+              onClick={toggleSelection}
+            />
           ))}
         </div>
 
         <div className="flex justify-between px-4 py-4 border-t border-t-[#e0e8f3]">
-          <button
-            className="w-[145px] h-[40px] border border-[#E0E8F2] rounded-[12px] bg-white text-black shadow-sm hover:shadow-md transition-all active:scale-95"
+          <Button
+            label="Reset"
+            variant="secondary"
             onClick={() => {
               setLocalSelection([]);
               onReset();
             }}
-          >
-            Reset
-          </button>
-          <button
-            className="w-[145px] h-[40px] bg-gradient-to-b from-[#3A8DFF] to-[#1369D9] text-white rounded-[12px] shadow-md hover:shadow-lg transition-all active:scale-95"
+          />
+          <Button
+            label="Apply Filters"
+            variant="primary"
             onClick={() => {
               onApply(localSelection);
               setIsFilterOpen(false);
             }}
-          >
-            Apply Filters
-          </button>
+          />
         </div>
       </div>
     </div>

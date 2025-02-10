@@ -15,7 +15,7 @@ const CustomerList: React.FC<CustomerListProps> = ({
         {Array.from({ length: 7 }).map((_, index) => (
           <div
             key={index}
-            className="w-full h-[40px] bg-gray-100 animate-pulse"
+            className="w-full h-[40px] bg-[#F5F7FA] animate-pulse"
           ></div>
         ))}
       </div>

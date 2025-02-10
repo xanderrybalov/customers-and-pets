@@ -70,7 +70,7 @@ const CustomersPage = () => {
 
   return (
     <div className="w-screen h-screen flex p-6 bg-white flex-col items-center justify-start gap-3">
-      <div className="w-[838px] h-[150px] bg-gray-100 p-4 flex flex-col">
+      <div className="w-[838px] h-[150px] bg-[#F5F7FA] p-4 flex flex-col">
         <h1 className="text-[25px] font-inter font-semibold leading-[30.26px] tracking-tightest m-4">
           Customers and Pets
         </h1>
