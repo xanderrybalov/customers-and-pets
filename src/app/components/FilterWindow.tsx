@@ -14,14 +14,7 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
   onApply,
   onReset,
 }) => {
-  const speciesOptions: string[] = [
-    'Any Animal',
-    'Dogs',
-    'Cats',
-    'Birds',
-    'Hamsters',
-    'Rats',
-  ];
+  const STATIC_SPECIES = ['Any Animal', 'Dog', 'Cat', 'Bird', 'Hamster', 'Rat'];
 
   const [localSelection, setLocalSelection] =
     useState<string[]>(selectedSpecies);
@@ -71,7 +64,7 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
         }`}
       >
         <div className="flex flex-wrap gap-2 py-4 px-4">
-          {speciesOptions.map((species) => (
+          {STATIC_SPECIES.map((species) => (
             <button
               key={species}
               className={`px-3 h-[29px] justify-start rounded-full py-1 border border-[#E0E8F2] flex items-center gap-2 transition-all ${
