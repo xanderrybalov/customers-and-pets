@@ -14,4 +14,6 @@ export type Customer = {
 
 export type CustomerListProps = {
   customers: Customer[];
+  error?: string;
+  loading?: boolean;
 };
