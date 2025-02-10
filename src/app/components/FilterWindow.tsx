@@ -58,7 +58,7 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
       </button>
 
       <div
-        className={`absolute top-full left-0 w-[334px] h-[174px] bg-white border border-[#D8E1EA] shadow-md rounded-xl flex flex-col justify-between transition-all duration-300 ${
+        className={`absolute top-full left-0 md:w-[334px] md:h-[174px] w-full h-auto bg-white border border-[#D8E1EA] shadow-md rounded-xl flex flex-col justify-between transition-all duration-300 ${
           isFilterOpen
             ? 'opacity-100 scale-100 translate-y-2'
             : 'opacity-0 scale-95 translate-y-0 pointer-events-none'
@@ -75,7 +75,7 @@ const FilterWindow: React.FC<FilterWindowProps> = ({
           ))}
         </div>
 
-        <div className="flex justify-between px-4 py-4 border-t border-t-[#e0e8f3]">
+        <div className="flex justify-between px-4 py-4 border-t border-t-[#e0e8f3] gap-4">
           <Button
             label="Reset"
             variant="secondary"

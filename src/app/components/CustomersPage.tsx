@@ -69,13 +69,22 @@ const CustomersPage = () => {
   }, [searchText, selectedSpecies]);
 
   return (
-    <div className="w-screen h-screen flex p-6 bg-white flex-col items-center justify-start gap-3">
-      <div className="w-[838px] h-[150px] bg-[#F5F7FA] p-4 flex flex-col">
-        <h1 className="text-[25px] font-inter font-semibold leading-[30.26px] tracking-tightest m-4">
+    <div
+      className="w-screen h-screen flex p-6 bg-white flex-col items-center justify-start gap-3 
+                    lg:p-4 md:p-3 sm:p-2 sm:gap-2"
+    >
+      <div
+        className="w-full h-auto bg-[#F5F7FA] p-4 flex flex-col
+                      lg:w-[838px] lg:h-[150px]"
+      >
+        <h1
+          className="text-[25px] font-inter font-semibold leading-[30.26px] tracking-tightest m-4
+                      lg:text-[22px] md:text-[20px] sm:text-[18px] sm:m-2"
+        >
           Customers and Pets
         </h1>
 
-        <div className="flex gap-3 ml-4 mt-2">
+        <div className="flex flex-col lg:flex-row gap-3 ml-2 mt-2">
           <SearchInput searchText={searchText} setSearchText={setSearchText} />
           <FilterWindow
             selectedSpecies={selectedSpecies}

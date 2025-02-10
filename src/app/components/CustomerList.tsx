@@ -11,7 +11,7 @@ const CustomerList: React.FC<CustomerListProps> = ({
 }) => {
   if (loading) {
     return (
-      <div className="flex flex-col gap-2 items-center w-[838px]">
+      <div className="flex flex-col gap-2 items-center w-auto lg:w-[838px]">
         {Array.from({ length: 7 }).map((_, index) => (
           <div
             key={index}
@@ -31,41 +31,48 @@ const CustomerList: React.FC<CustomerListProps> = ({
   }
 
   return (
-    <div className="flex flex-col gap-2 items-center">
+    <div className="flex flex-col gap-2 items-center w-full">
       {customers.length === 0 ? (
         <p className="text-gray-500 text-sm">No customers found.</p>
       ) : (
         customers.map((customer) => (
           <div
             key={customer.id}
-            className="w-[838px] h-[40px] bg-[#F5F7FA] flex items-center px-4 shadow-sm"
+            className="w-full h-auto lg:w-[838px] lg:h-[40px] bg-[#F5F7FA] flex flex-col md:flex-wrap p-2 px-4 shadow-sm content-start"
           >
-            <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 mr-4">
-              id-{customer.id}
-            </span>
-            <span className="font-medium text-gray-700">{customer.name}</span>
+            {/* Верхний ряд: ID, Имя и Телефон */}
+            <div className="flex items-center flex-wrap gap-2 ">
+              <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 sm:px-1">
+                id-{customer.id}
+              </span>
+              <span className="font-medium text-gray-700 sm:text-[14px]">
+                {customer.name}
+              </span>
+              <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 sm:px-1">
+                {customer.phone}
+              </span>
+            </div>
 
-            <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 ml-4">
-              {customer.phone || 'No phone'}
-            </span>
+            {/* Нижний ряд: Email и Животные */}
+            <div className="flex items-center flex-wrap gap-2 mt-2 lg:mt-auto lg:ml-1">
+              <span className="font-medium text-gray-700 px-2 sm:px-1 sm:text-[14px]">
+                {customer.email}
+              </span>
 
-            <span className="font-medium text-gray-700 px-2 ml-4">
-              {customer.email}
-            </span>
-
-            {customer.pets.length > 0 && (
-              <div className="ml-4 flex gap-2">
-                {customer.pets.map((pet) => (
-                  <span
-                    key={pet.id}
-                    className="text-xs text-gray-600 px-2 py-1 bg-white rounded-md border border-gray-300 flex items-center gap-1"
-                  >
-                    <SpeciesIcon species={pet.species} fillColor="#838993" />
-                    {pet.name} - {pet.species}
-                  </span>
-                ))}
-              </div>
-            )}
+              {customer.pets.length > 0 && (
+                <div className="flex flex-wrap gap-2 sm:flex-wrap">
+                  {customer.pets.map((pet) => (
+                    <span
+                      key={pet.id}
+                      className="text-xs text-gray-600 px-2 py-1 bg-white rounded-md border border-gray-300 flex items-center gap-1 sm:px-1 sm:py-0.5"
+                    >
+                      <SpeciesIcon species={pet.species} fillColor="#838993" />
+                      {pet.name} - {pet.species}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         ))
       )}
