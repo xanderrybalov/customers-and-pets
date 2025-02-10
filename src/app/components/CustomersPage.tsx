@@ -4,17 +4,45 @@ import { useState, useEffect } from 'react';
 import { SearchInput } from './SearchInput';
 import FilterWindow from './FilterWindow';
 import CustomersList from './CustomerList';
+import { Customer, Pet } from '../types';
+import { normalizeSpecies } from '../utils/normalizeSpecies';
 
 const fetchCustomers = async (searchText = '', species: string[] = []) => {
-  let url = '/api/customers';
-  const params = new URLSearchParams();
-  if (searchText) params.append('searchText', searchText);
-  if (species.length) params.append('species', species.join(','));
-  url += `?${params.toString()}`;
-
-  const response = await fetch(url);
+  const response = await fetch('/api/customers');
   const data = await response.json();
-  return data.customers;
+  let customers = data.customers;
+
+  const filteredSpecies = species
+    .filter((s) => s !== 'Any Animal')
+    .map((s) => normalizeSpecies(s).toLowerCase());
+
+  if (filteredSpecies.length > 0) {
+    customers = customers.filter((customer: Customer) =>
+      customer.pets.some((pet: Pet) =>
+        filteredSpecies.includes(pet.species.toLowerCase())
+      )
+    );
+  }
+
+  if (searchText.trim()) {
+    const searchLower = searchText.toLowerCase();
+
+    customers = customers.filter((customer: Customer) => {
+      const matchesCustomer =
+        customer.name.toLowerCase().includes(searchLower) ||
+        customer.email.toLowerCase().includes(searchLower) ||
+        customer.id.toLowerCase().includes(searchLower) ||
+        customer.phone.includes(searchText);
+
+      const matchesPet = customer.pets.some((pet: Pet) =>
+        pet.name.toLowerCase().includes(searchLower)
+      );
+
+      return matchesCustomer || matchesPet;
+    });
+  }
+
+  return customers;
 };
 
 const CustomersPage = () => {
@@ -22,7 +50,7 @@ const CustomersPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [selectedSpecies, setSelectedSpecies] = useState<string[]>([]);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [tempSpecies, setTempSpecies] = useState<string[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -44,13 +72,14 @@ const CustomersPage = () => {
           <SearchInput searchText={searchText} setSearchText={setSearchText} />
           <div className="relative">
             <FilterWindow
-              selectedSpecies={selectedSpecies}
-              setSelectedSpecies={setSelectedSpecies}
+              selectedSpecies={tempSpecies}
               onApply={(newSelection) => {
                 setSelectedSpecies(newSelection);
-                setIsFilterOpen(false);
               }}
-              onReset={() => setSelectedSpecies([])}
+              onReset={() => {
+                setSelectedSpecies([]);
+                setTempSpecies([]);
+              }}
             />
           </div>
         </div>

@@ -2,24 +2,7 @@
 
 import React from 'react';
 import SpeciesIcon from './SpeciesIcon';
-
-type Pet = {
-  id: string;
-  name: string;
-  species: string;
-};
-
-type Customer = {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  pets: Pet[];
-};
-
-type CustomerListProps = {
-  customers: Customer[];
-};
+import { CustomerListProps } from '../types';
 
 const CustomerList: React.FC<CustomerListProps> = ({ customers }) => {
   return (
@@ -30,9 +13,20 @@ const CustomerList: React.FC<CustomerListProps> = ({ customers }) => {
         customers.map((customer) => (
           <div
             key={customer.id}
-            className="w-[838px] h-[40px] bg-[#F5F7FA] rounded-xl flex items-center px-4 shadow-sm"
+            className="w-[838px] h-[40px] bg-[#F5F7FA] flex items-center px-4 shadow-sm"
           >
+            <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 mr-4 ">
+              {customer.id}
+            </span>
             <span className="font-medium text-gray-700">{customer.name}</span>
+
+            <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 ml-4 ">
+              {customer.phone}
+            </span>
+
+            <span className="font-medium text-gray-700 px-2 ml-4 ">
+              {customer.email}
+            </span>
 
             {customer.pets.length > 0 && (
               <div className="ml-4 flex gap-2">

@@ -1,4 +1,5 @@
 import { JSX } from 'react';
+import { normalizeSpecies } from '../utils/normalizeSpecies';
 
 const SpeciesIcon = ({
   species,
@@ -7,12 +8,6 @@ const SpeciesIcon = ({
   species: string;
   fillColor?: string;
 }) => {
-  const normalizeSpecies = (str: string) => {
-    return (
-      str.charAt(0).toUpperCase() + str.slice(1).toLowerCase().replace(/s$/, '')
-    );
-  };
-
   const normalizedSpecies = normalizeSpecies(species);
   const speciesIcons: { [key: string]: JSX.Element } = {
     Bird: (
