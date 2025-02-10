@@ -16,7 +16,7 @@ const CustomerList: React.FC<CustomerListProps> = ({ customers }) => {
             className="w-[838px] h-[40px] bg-[#F5F7FA] flex items-center px-4 shadow-sm"
           >
             <span className="font-medium text-gray-700 bg-white rounded-md border border-gray-300 px-2 mr-4 ">
-              {customer.id}
+              id-{customer.id}
             </span>
             <span className="font-medium text-gray-700">{customer.name}</span>
 
